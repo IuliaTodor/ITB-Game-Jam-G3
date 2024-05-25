@@ -8,6 +8,7 @@ public class EnemyKillingState : EnemyBaseState
     {
         base.EnterState(enemy);
         _enemyController.Agent.SetDestination(_enemyController.StartPosition);
+        _enemyController.Anim.SetBool("grabbing", true);
     }
     
     public override void UpdateState(StateManager<EnemyStateMachine.EEnemyState> context)
@@ -19,6 +20,7 @@ public class EnemyKillingState : EnemyBaseState
     public override void ExitState(StateManager<EnemyStateMachine.EEnemyState> context)
     {  
         _enemyController.GrabedPrey.Release();
+        _enemyController.Anim.SetBool("grabbing", false);
     }
 
     public override void FixedUpdateState(StateManager<EnemyStateMachine.EEnemyState> context)

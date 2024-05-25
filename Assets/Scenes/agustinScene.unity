@@ -771,7 +771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _radius: 35
-  _enemyPrefab: {fileID: 4025566869854870266, guid: a4a05a49099638d4ca5e6b1ebaf8b939,
+  _enemyPrefab: {fileID: 2240445328966171644, guid: da0431a3a9ff7024d8308671aab61b7e,
     type: 3}
 --- !u!4 &1701044130
 Transform:

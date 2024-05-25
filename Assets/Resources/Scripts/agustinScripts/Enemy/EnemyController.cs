@@ -22,6 +22,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [Space, Header("Components")]
     [SerializeField] NavMeshAgent _agent;
     public NavMeshAgent Agent { get { return _agent; } }
+    public Animator Anim;
 
     [SerializeField] private EnemyGrabHitbox _enemyGrabHitbox;
     public EnemyGrabHitbox EnemyGrabHitbox { get { return _enemyGrabHitbox; } }
