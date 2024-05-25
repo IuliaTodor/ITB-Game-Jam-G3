@@ -25,7 +25,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        MipsAlive = EntityManager.Instance.MipsAlive.Count;
+        if (EntityManager.Instance != null)
+            MipsAlive = EntityManager.Instance.MipsAlive.Count; 
     }
 
     public void GameOver()
