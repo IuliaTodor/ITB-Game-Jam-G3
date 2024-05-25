@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject _enemyPrefab;
 
     [ContextMenu("SpawnEnemy")]
-    private void SpawnEnemy()
+    public void SpawnEnemy()
     {
         Vector2 circle = Random.insideUnitCircle.normalized * _radius;
         Vector3 _spawnPosition = new Vector3(circle.x, 0 , circle.y);

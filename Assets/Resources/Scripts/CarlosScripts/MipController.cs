@@ -52,7 +52,7 @@ public class MipController : MonoBehaviour
     {
         Instantiate(plant, transform.position, Quaternion.identity, GameObject.Find("Arbolitos").transform);
         anim.SetBool("planting", false);
-        GameManager.instance.score += 1;
+        GameManager.Instance.score += 1;
         agent.destination = RandomPosition();
     }
 
