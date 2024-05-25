@@ -29,5 +29,11 @@ public class EntityManager : MonoBehaviour
     {
         MipsAlive.Remove(mipController);
         GameManager.Instance.MipsAlive--;
+        if (GameManager.Instance.MipsAlive <= 0)
+        {
+            GameManager.Instance.GameOver();
+
+        }
+        
     }
 }

@@ -10,12 +10,16 @@ public class GameManager : MonoBehaviour
     public int MipsAlive;
     public string playerName;
 
+    public GameObject GameOverPanel;
+
+
     // Start is called before the first frame update
     private void Awake()
     {
         if (Instance == null && Instance != this)
         {
             _instance = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -29,10 +33,20 @@ public class GameManager : MonoBehaviour
             MipsAlive = EntityManager.Instance.MipsAlive.Count; 
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            GameOver();
+        }
+    }
+
     public void GameOver()
     {
         Debug.Log("EndGame");
         DataManager.SaveData(score, playerName);
+        Time.timeScale = 0f;
+        GameOverPanel.SetActive(true);
     }
     
 }

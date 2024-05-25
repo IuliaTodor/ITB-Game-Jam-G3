@@ -8,10 +8,6 @@ public class CameraMouseLook : MonoBehaviour
     public Transform playerTransform;
 
     float xRotation = 0;
-    void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-    }
 
     void Update()
     {
