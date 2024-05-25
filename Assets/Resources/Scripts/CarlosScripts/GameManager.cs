@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
     public int score = 0;
+    public int MipsAlive;
     public string playerName;
     [SerializeField] private EnemySpawner _spawner;
 
@@ -30,9 +31,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        MipsAlive = EntityManager.Instance.MipsAlive.Count;
+    }
+
     private void Update()
     {
-        float t = Mathf.InverseLerp(_minScore, _maxScore, score);
+        float t = Mathf.InverseLerp(_maxScore, _minScore, score);
         float SpawnTime = Mathf.Lerp(_minSpawnTime, _maxSpawnTime, t);
         _currentTimer += Time.deltaTime;
 
@@ -50,6 +56,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Debug.Log("EndGame");
         DataManager.SaveData(score, playerName);
     }
     
