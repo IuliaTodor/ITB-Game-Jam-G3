@@ -24,5 +24,6 @@ public class EntityManager : MonoBehaviour
     public void RemoveMip(MipController mipController)
     {
         MipsAlive.Remove(mipController);
+        GameManager.Instance.MipsAlive--;
     }
 }

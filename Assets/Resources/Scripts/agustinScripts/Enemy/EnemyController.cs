@@ -38,6 +38,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     private void OnDestroy()
     {
         _enemyState.OnDestroy();
+        EntityManager.Instance.EnemyList.Remove(this);
     }
 
     #region IDamageable
@@ -51,6 +52,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     {
         if (CurrentState is not EnemyStateMachine.EEnemyState.RUNING)
         {
+            Debug.Log(CurrentLife);
             CurrentLife -= damageTaken;
 
             if (CurrentLife <= 0)

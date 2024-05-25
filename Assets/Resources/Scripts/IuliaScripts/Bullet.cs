@@ -13,12 +13,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Enemy")
+        if(collision.gameObject.CompareTag("Enemy") && collision.gameObject.TryGetComponent(out IDamageable damageable))
         {
-            Debug.Log("Es un enemigo");
-            Destroy(gameObject);
+            damageable.TakeDamage(1);
         }
+        Destroy(gameObject);
     }
-
-
 }

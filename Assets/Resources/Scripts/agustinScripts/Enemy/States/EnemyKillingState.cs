@@ -20,6 +20,7 @@ public class EnemyKillingState : EnemyBaseState
     public override void ExitState(StateManager<EnemyStateMachine.EEnemyState> context)
     {  
         _enemyController.GrabedPrey.Release();
+        _enemyController.EnemyGrabHitbox.gameObject.SetActive(false);
         _enemyController.Anim.SetBool("grabbing", false);
     }
 
