@@ -7,7 +7,7 @@ public class Gun : MonoBehaviour
 {
     public int totalBullets;
     public int bulletsLeft;
-    public float bulletSpeed = 2f;
+    public float bulletSpeed;
 
     public PlayerMovement playerMovement;
 
@@ -46,6 +46,10 @@ public class Gun : MonoBehaviour
             cooldown.StartCooldown();
 
             bullet.GetComponent<Rigidbody>().velocity = shootPoint.forward * (bulletSpeed + playerMovement.speed);
+
+            Debug.Log("ShootPoint forward: " + shootPoint.forward);
+
+            Debug.Log("Bullet velocity: " + bullet.GetComponent<Rigidbody>().velocity);
 
             bulletsLeft--;
         }
