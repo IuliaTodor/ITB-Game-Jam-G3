@@ -39,7 +39,7 @@ public class MipController : MonoBehaviour
     {
         agent.ResetPath();
         System.Random rnd = new System.Random();
-        yield return new WaitForSeconds(rnd.Next(5,10));
+        yield return new WaitForSeconds(rnd.Next(10,20));
         anim.SetBool("planting", true);
         yield return Plant();
 
@@ -49,6 +49,7 @@ public class MipController : MonoBehaviour
     {
         Instantiate(plant, transform.position, Quaternion.identity, GameObject.Find("Arbolitos").transform);
         anim.SetBool("planting", false);
+        GameManager.instance.score += 1;
         agent.destination = RandomPosition();
     }
 
