@@ -120,8 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07dc9a0f529dcd24aa5c7bde0d4d106b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trans: {fileID: 0}
-  plant: {fileID: 7814367801267094421, guid: 2eb4127f063b9ee45bf0088e223ec5ef, type: 3}
+  isGrabbed: 0
+  plane: {fileID: 0}
+  plant: {fileID: 747296472038546875, guid: 1654e06cead2d7e47bab0326db00615a, type: 3}
 --- !u!95 &562977766387064312
 Animator:
   serializedVersion: 5
