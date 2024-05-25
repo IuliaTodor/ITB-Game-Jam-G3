@@ -16,7 +16,7 @@ public class EnemyGrabHitbox : MonoBehaviour
     private void Grab(MipController prey)
     {
         _isEnemyGrabed = true;
-        prey.isGrabbed = true;
+        prey.Grab();
         prey.transform.SetParent(transform);
         prey.transform.localPosition = Vector3.zero;
     }

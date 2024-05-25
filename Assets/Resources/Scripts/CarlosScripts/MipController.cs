@@ -60,12 +60,14 @@ public class MipController : MonoBehaviour
     {
         isGrabbed = true;
         agent.ResetPath();
-        anim.SetBool("grabbed", false);
+        agent.enabled = false;
+        anim.SetBool("grabbed", true);
     }
 
     public void Release()
     {
         isGrabbed = false;
+        agent.enabled = true;
         agent.destination = RandomPosition();
         anim.SetBool("grabbed", false);
     }

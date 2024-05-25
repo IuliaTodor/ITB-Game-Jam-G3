@@ -17,7 +17,9 @@ public class EnemyKillingState : EnemyBaseState
     }
 
     public override void ExitState(StateManager<EnemyStateMachine.EEnemyState> context)
-    {   }
+    {  
+        _enemyController.GrabedPrey.Release();
+    }
 
     public override void FixedUpdateState(StateManager<EnemyStateMachine.EEnemyState> context)
     {   }
