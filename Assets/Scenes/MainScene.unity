@@ -1405,6 +1405,11 @@ MonoBehaviour:
   _radius: 168.5
   _enemyPrefab: {fileID: 2240445328966171644, guid: da0431a3a9ff7024d8308671aab61b7e,
     type: 3}
+  _minScore: 10
+  _maxScore: 50
+  _currentTimer: 0
+  _minSpawnTime: 5
+  _maxSpawnTime: 25
 --- !u!4 &908849558
 Transform:
   m_ObjectHideFlags: 0
@@ -2295,7 +2300,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 51292d13201f8ed48afb8785e52befbd,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 58.5
+      value: 33.6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 51292d13201f8ed48afb8785e52befbd,
         type: 3}
@@ -2305,7 +2310,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 51292d13201f8ed48afb8785e52befbd,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 287.9
+      value: 275.7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 51292d13201f8ed48afb8785e52befbd,
         type: 3}
@@ -3541,12 +3546,6 @@ MonoBehaviour:
   score: 0
   MipsAlive: 0
   playerName: 
-  _spawner: {fileID: 908849557}
-  _minScore: 10
-  _maxScore: 50
-  _currentTimer: 0
-  _minSpawnTime: 10
-  _maxSpawnTime: 25
 --- !u!4 &2083160614
 Transform:
   m_ObjectHideFlags: 0

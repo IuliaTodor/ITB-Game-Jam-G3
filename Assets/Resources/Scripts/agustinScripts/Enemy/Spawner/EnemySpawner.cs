@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -12,9 +11,15 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float _currentTimer;
     [SerializeField] private float _minSpawnTime;
     [SerializeField] private float _maxSpawnTime;
+
+    private void Start()
+    {
+        SpawnEnemy();
+    }
+
     private void Update()
     {
-        float t = Mathf.InverseLerp(_maxScore, _minScore, score);
+        float t = Mathf.InverseLerp(_maxScore, _minScore, GameManager.Instance.score);
         float SpawnTime = Mathf.Lerp(_minSpawnTime, _maxSpawnTime, t);
         _currentTimer += Time.deltaTime;
 
