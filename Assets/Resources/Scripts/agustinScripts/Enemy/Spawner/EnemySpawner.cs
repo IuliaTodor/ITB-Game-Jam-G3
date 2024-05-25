@@ -5,6 +5,31 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] float _radius;
     [SerializeField] GameObject _enemyPrefab;
 
+    [Space, Header("Spawn Time Related")]
+    [SerializeField] private int _minScore;
+    [SerializeField] private int _maxScore;
+    [SerializeField] private float _currentTimer;
+    [SerializeField] private float _minSpawnTime;
+    [SerializeField] private float _maxSpawnTime;
+
+    private void Start()
+    {
+        SpawnEnemy();
+    }
+
+    private void Update()
+    {
+        float t = Mathf.InverseLerp(_maxScore, _minScore, GameManager.Instance.score);
+        float SpawnTime = Mathf.Lerp(_minSpawnTime, _maxSpawnTime, t);
+        _currentTimer += Time.deltaTime;
+
+        if (_currentTimer >= SpawnTime)
+        {
+            SpawnEnemy();
+            _currentTimer = 0;
+        }
+    }
+
     [ContextMenu("SpawnEnemy")]
     public void SpawnEnemy()
     {

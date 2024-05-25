@@ -7,6 +7,10 @@ public class EntityManager : MonoBehaviour
     private static EntityManager _instance;
     public static EntityManager Instance { get { return _instance; } }
 
+    private void OnEnable()
+    {
+        FindObjectOfType<AudioManager>().Play("MainSong");
+    }
     private void Awake()
     {
         if (_instance != this && _instance != null)
