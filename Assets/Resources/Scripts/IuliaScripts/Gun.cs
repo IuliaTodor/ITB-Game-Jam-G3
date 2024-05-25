@@ -14,13 +14,18 @@ public class Gun : MonoBehaviour
     public Transform shootPoint;
     public Transform bulletPrefab;
 
-    [SerializeField] private WeaponCooldown cooldown; 
+    [SerializeField] private WeaponCooldown cooldown;
 
 
     private void Awake()
     {
         bulletsLeft = totalBullets;
         playerMovement = GetComponentInParent<PlayerMovement>();
+    }
+
+    private void Start()
+    {
+        UIManager.instance.UpdatePlayerHealth(bulletsLeft, totalBullets);
     }
     private void FixedUpdate()
     {
@@ -33,8 +38,6 @@ public class Gun : MonoBehaviour
         {
             Shoot();
         }
-
-        Reload();
     }
 
     public void Shoot()
@@ -47,11 +50,9 @@ public class Gun : MonoBehaviour
 
             bullet.GetComponent<Rigidbody>().velocity = shootPoint.forward * (bulletSpeed + playerMovement.speed);
 
-            Debug.Log("ShootPoint forward: " + shootPoint.forward);
-
-            Debug.Log("Bullet velocity: " + bullet.GetComponent<Rigidbody>().velocity);
-
             bulletsLeft--;
+
+            UIManager.instance.UpdatePlayerHealth(bulletsLeft, totalBullets);
         }
 
         else
@@ -62,11 +63,9 @@ public class Gun : MonoBehaviour
 
     public void Reload()
     {
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            Debug.Log("Reload");
-            bulletsLeft = totalBullets;
-        }
+        Debug.Log("Reload");
+        bulletsLeft = totalBullets;
+        UIManager.instance.UpdatePlayerHealth(bulletsLeft, totalBullets);
     }
 
 
