@@ -8,8 +8,15 @@ public class EnemySpawner : MonoBehaviour
     [ContextMenu("SpawnEnemy")]
     private void SpawnEnemy()
     {
-        Vector2 circle = Random.insideUnitCircle * _radius;
+        Vector2 circle = Random.insideUnitCircle.normalized * _radius;
         Vector3 _spawnPosition = new Vector3(circle.x, 0 , circle.y);
         Debug.Log(_spawnPosition);
+
+        Instantiate(_enemyPrefab, _spawnPosition + transform.position, Quaternion.identity);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(transform.position, _radius);
     }
 }

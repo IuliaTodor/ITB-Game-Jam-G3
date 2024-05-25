@@ -9,12 +9,14 @@ public class EnemyStateMachine : StateManager<EnemyStateMachine.EEnemyState>
     {
         DEFAULT = 0,
         HUNTING = 1,
-        KILLING = 2
+        KILLING = 2,
+        RUNING = 3
     }
 
     EnemyDefaultState EnemyDefaultState = new EnemyDefaultState(EEnemyState.DEFAULT);
     EnemyHuntingState EnemyHuntingState = new EnemyHuntingState(EEnemyState.HUNTING);
     EnemyKillingState EnemyKillingState = new EnemyKillingState(EEnemyState.KILLING);
+    EnemyRuningState EnemyRuningState = new EnemyRuningState(EEnemyState.RUNING);
 
     private void Awake()
     {

@@ -15,12 +15,13 @@ public class EnemyHuntingState : EnemyBaseState
 
     public override void UpdateState(StateManager<EnemyStateMachine.EEnemyState> context)
     {
-        Debug.Log(prey.position);
         _enemyController.Agent.SetDestination(prey.position);
     }
 
     public override void ExitState(StateManager<EnemyStateMachine.EEnemyState> context)
-    {   }
+    {
+        _enemyController.GrabedPrey = prey;
+    }
 
     public override void FixedUpdateState(StateManager<EnemyStateMachine.EEnemyState> context)
     {   }
@@ -29,6 +30,8 @@ public class EnemyHuntingState : EnemyBaseState
     {
         if (_enemyController.EnemyGrabHitbox.isEnemyGrabed)
             return EnemyStateMachine.EEnemyState.KILLING;
+        else if (_enemyController.Killed)
+            return EnemyStateMachine.EEnemyState.RUNING;
 
         return EnemyStateMachine.EEnemyState.HUNTING;
     }
