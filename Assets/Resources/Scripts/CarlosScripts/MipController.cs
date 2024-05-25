@@ -31,18 +31,43 @@ public class MipController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (agent.destination.x == transform.position.x && agent.destination.z == transform.position.z) agent.destination = RandomPosition();
+        if (agent.destination.x == transform.position.x && agent.destination.z == transform.position.z)
+        {
+            if (anim.GetBool("planting") == false) agent.destination = RandomPosition();
+        }
     }
     
 
     public IEnumerator Plant()
     {
-        Instantiate(plant,transform.position, Quaternion.identity, GameObject.Find("Arbolitos").transform);
-       
+        agent.ResetPath();
         System.Random rnd = new System.Random();
-        yield return new WaitForSeconds(rnd.Next(5,10));
+        yield return new WaitForSeconds(rnd.Next(10,20));
+        anim.SetBool("planting", true);
         yield return Plant();
 
+    }
+
+    public void InstantiatePlant()
+    {
+        Instantiate(plant, transform.position, Quaternion.identity, GameObject.Find("Arbolitos").transform);
+        anim.SetBool("planting", false);
+        GameManager.instance.score += 1;
+        agent.destination = RandomPosition();
+    }
+
+    public void Grab()
+    {
+        isGrabbed = true;
+        agent.ResetPath();
+        anim.SetBool("grabbed", false);
+    }
+
+    public void Release()
+    {
+        isGrabbed = false;
+        agent.destination = RandomPosition();
+        anim.SetBool("grabbed", false);
     }
 
 
