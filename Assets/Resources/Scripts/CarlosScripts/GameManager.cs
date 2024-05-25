@@ -9,14 +9,6 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public int MipsAlive;
     public string playerName;
-    [SerializeField] private EnemySpawner _spawner;
-
-    [Space, Header("Spawn Time Related")]
-    [SerializeField] private int _minScore;
-    [SerializeField] private int _maxScore;
-    [SerializeField] private float _currentTimer;
-    [SerializeField] private float _minSpawnTime;
-    [SerializeField] private float _maxSpawnTime;
 
     // Start is called before the first frame update
     private void Awake()
@@ -34,24 +26,6 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         MipsAlive = EntityManager.Instance.MipsAlive.Count;
-    }
-
-    private void Update()
-    {
-        float t = Mathf.InverseLerp(_maxScore, _minScore, score);
-        float SpawnTime = Mathf.Lerp(_minSpawnTime, _maxSpawnTime, t);
-        _currentTimer += Time.deltaTime;
-
-        if (_currentTimer >= SpawnTime)
-        {
-            SpawnEnemy();
-            _currentTimer = 0;
-        }
-    }
-
-    private void SpawnEnemy()
-    {
-        _spawner.SpawnEnemy();
     }
 
     public void GameOver()
