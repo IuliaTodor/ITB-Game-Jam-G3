@@ -32,7 +32,7 @@ public class EnemyKillingState : EnemyBaseState
 
     public override void OnDestroy()
     {
-        GameObject.Destroy(_enemyController.GrabedPrey);
+        EntityManager.Instance.RemoveMip(_enemyController.GrabedPrey);
     }
 
 }

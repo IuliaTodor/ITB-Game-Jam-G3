@@ -4,6 +4,7 @@ public class EnemyDefaultState : EnemyBaseState
     public override void EnterState(StateManager<EnemyStateMachine.EEnemyState> enemy)
     {
         base.EnterState(enemy);
+        EntityManager.Instance.EnemyList.Add(_enemyController);
     }
 
     public override void ExitState(StateManager<EnemyStateMachine.EEnemyState> context)

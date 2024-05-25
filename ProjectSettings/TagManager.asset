@@ -3,12 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Enemy
-<<<<<<< HEAD
-  - Prey
-=======
->>>>>>> origin/IuliaWeapon
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -16,11 +11,7 @@ TagManager:
   - 
   - Water
   - UI
-<<<<<<< HEAD
-  - Enemy
-=======
-  - Ground
->>>>>>> origin/IuliaWeapon
+  - 
   - 
   - 
   - 

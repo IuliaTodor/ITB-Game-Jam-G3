@@ -14,6 +14,7 @@ public class MipController : MonoBehaviour
     public GameObject plane;
     public GameObject plant;
 
+    /*
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -26,11 +27,13 @@ public class MipController : MonoBehaviour
         StartCoroutine(Plant());
     }
 
+    
     // Update is called once per frame
     void Update()
     {
         if (agent.destination.x == transform.position.x && agent.destination.z == transform.position.z) agent.destination = RandomPosition();
     }
+    */
 
     public IEnumerator Plant()
     {

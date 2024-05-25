@@ -25,13 +25,18 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     [SerializeField] private EnemyGrabHitbox _enemyGrabHitbox;
     public EnemyGrabHitbox EnemyGrabHitbox { get { return _enemyGrabHitbox; } }
-    public Transform GrabedPrey;
+    [HideInInspector] public MipController GrabedPrey;
     #endregion
 
     private void Start()
     {
         _startPosition = transform.position;
         _currentLife = MaxLife;
+    }
+
+    private void OnDestroy()
+    {
+        _enemyState.OnDestroy();
     }
 
     #region IDamageable

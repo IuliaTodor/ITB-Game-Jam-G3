@@ -9,13 +9,15 @@ public class EnemyGrabHitbox : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Prey"))
-            Grab(other.transform);
+            if (other.gameObject.TryGetComponent(out MipController mipController) && !mipController.isGrabbed)
+                Grab(mipController);
     }
 
-    private void Grab(Transform prey)
+    private void Grab(MipController prey)
     {
         _isEnemyGrabed = true;
-        prey.SetParent(transform);
-        prey.localPosition = Vector3.zero;
+        prey.isGrabbed = true;
+        prey.transform.SetParent(transform);
+        prey.transform.localPosition = Vector3.zero;
     }
 }

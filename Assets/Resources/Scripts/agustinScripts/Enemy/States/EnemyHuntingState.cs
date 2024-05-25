@@ -2,20 +2,27 @@ using UnityEngine;
 
 public class EnemyHuntingState : EnemyBaseState
 {
-    Transform prey;
+    MipController prey;
+    bool mustProtect;
     public EnemyHuntingState(EnemyStateMachine.EEnemyState state) : base(state) { }
 
     public override void EnterState(StateManager<EnemyStateMachine.EEnemyState> enemy)
     {
         base.EnterState(enemy);
+        mustProtect = false;
 
         prey = FindPrey();
-        _enemyController.Agent.SetDestination(prey.position);
+
+        if (!mustProtect)
+            _enemyController.Agent.SetDestination(prey.transform.position);
     }
 
     public override void UpdateState(StateManager<EnemyStateMachine.EEnemyState> context)
     {
-        _enemyController.Agent.SetDestination(prey.position);
+        if (!prey.isGrabbed && !mustProtect)
+            _enemyController.Agent.SetDestination(prey.transform.position);
+        else
+            prey = FindPrey();
     }
 
     public override void ExitState(StateManager<EnemyStateMachine.EEnemyState> context)
@@ -32,6 +39,8 @@ public class EnemyHuntingState : EnemyBaseState
             return EnemyStateMachine.EEnemyState.KILLING;
         else if (_enemyController.Killed)
             return EnemyStateMachine.EEnemyState.RUNING;
+        else if (mustProtect)
+            return EnemyStateMachine.EEnemyState.PROTECTING;
 
         return EnemyStateMachine.EEnemyState.HUNTING;
     }
@@ -39,21 +48,29 @@ public class EnemyHuntingState : EnemyBaseState
     public override void OnDestroy()
     {   }
 
-
-    private Transform FindPrey()
+    private MipController FindPrey()
     {
-        GameObject newPrey;
+        MipController newPrey = new MipController();
 
-        GameObject[] preys = GameObject.FindGameObjectsWithTag("Prey");
-        newPrey = preys[0];
+        MipController[] preys = EntityManager.Instance.MipsAlive.ToArray();
 
-        foreach (GameObject prey in preys) 
-        {   
-            if (Vector3.Distance(_enemyController.transform.position, prey.transform.position) <= Vector3.Distance(_enemyController.transform.position, newPrey.transform.position))
+        foreach (MipController prey in preys) 
+        {
+            if (newPrey != null)
+            {
+                if (Vector3.Distance(_enemyController.transform.position, prey.transform.position) <= Vector3.Distance(_enemyController.transform.position, newPrey.transform.position) && !prey.isGrabbed)
+                    newPrey = prey;
+            }
+            else if (!prey.isGrabbed)
+            {
                 newPrey = prey;
-
+            }
         }
 
-        return newPrey.transform;
+        if (newPrey == null)
+        {
+            mustProtect = true;
+        }
+        return newPrey;
     }
 }
